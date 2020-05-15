@@ -19,7 +19,8 @@ router.get("/", auth, async (req, res) => {
 
 // route : api/auth
 // description : Authenticate a user and get the token
-router.get(
+// access : public
+router.post(
   "/",
   [
     check("email", "Please enter a valid email.").isEmail().not().notEmpty(),
@@ -60,7 +61,7 @@ router.get(
       jwt.sign(
         payload,
         config.get("jwtSecret"),
-        { expiresIn: 360000 },
+        { expiresIn: 10000000 },
         (err, token) => {
           if (err) throw err;
           res.json({ token });
