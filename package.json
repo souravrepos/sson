@@ -5,10 +5,12 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "client": "npm start --prefix ui",
+    "app": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Sourav Thakur",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.1",
@@ -18,5 +20,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
   }
 }
