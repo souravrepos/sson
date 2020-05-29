@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alertAction";
+import { signup } from "../../actions/authAction";
 import PropTypes from "prop-types";
 
-const SignUp = ({ setAlert }) => {
+const SignUp = ({ setAlert, signup, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,9 +24,13 @@ const SignUp = ({ setAlert }) => {
     if (password !== passwordConfirm) {
       setAlert("Passwords do not match", "danger");
     } else {
-      console.log("User", formData);
+      signup({ name, email, password });
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="./dashboard" />;
+  }
 
   return (
     <Fragment>
@@ -39,7 +44,6 @@ const SignUp = ({ setAlert }) => {
             type="text"
             placeholder="Name"
             name="name"
-            required
             value={name}
             onChange={(e) => onChange(e)}
           />
@@ -88,6 +92,12 @@ const SignUp = ({ setAlert }) => {
 
 SignUp.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  signup: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
-export default connect(null, { setAlert })(SignUp);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.authReducer.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, signup })(SignUp);
