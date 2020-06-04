@@ -1,6 +1,6 @@
-/* Global Styles */
+/* Global Styles primaryColor:#17a2b8*/
 :root {
-  --primary-color: #17a2b8;
+  --primary-color: #d55337;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -137,6 +137,35 @@ img {
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+}
+
+.cross {
+  background: red;
+  outline: none;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cross:active {
+  background-color: red;
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+}
+
+.btn-wide {
+  display: inline-block;
+  background: var(--light-color);
+  color: #333;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+  width: 300px;
 }
 
 .badge {

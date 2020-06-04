@@ -16,13 +16,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const loggedOut = (
     <ul>
       <li>
-        <Link to="">Developers</Link>
+        <Link to="">People</Link>
       </li>
       <li>
-        <Link to="/signup">Register</Link>
+        <Link to="/signup">Sign Up</Link>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <Link to="/login">Log In</Link>
       </li>
     </ul>
   );

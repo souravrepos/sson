@@ -13,15 +13,15 @@ const Landing = ({ auth: isAuthenticated }) => {
       <div className="dark-overlay">
         <div class="landing-inner">
           <h1 className="x-large">SSON Share</h1>
-          <p className="lead">
-            Create a developer profile/portfolio, share posts and get help from
-            other developers
-          </p>
+          <p className="lead">Welcome</p>
           <div className="buttons">
-            <Link to="/signup" className="btn btn-primary">
+            <Link to="/signup" className="btn-wide btn-primary">
               Sign Up
             </Link>
-            <Link to="/login" className="btn btn-light">
+          </div>
+          <div className="buttons">
+            <br />
+            <Link to="/login" className="btn-wide btn-light">
               Login
             </Link>
           </div>
