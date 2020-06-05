@@ -6,6 +6,7 @@ import {
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
+  GET_ALL_PROFILES,
 } from "../Constants_Ui";
 
 // get current user profile
@@ -18,6 +19,41 @@ export const getCurrentProfile = () => async (dispatch) => {
     });
   } catch (err) {
     console.log("Sgf", err.response);
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// get all profiles
+export const getAllProfiles = () => async (dispatch) => {
+  // dispatch({ type: CLEAR_PROFILE }); Not working, it is getting triggered after get all profiles
+  try {
+    const res = await axios.get("/api/profile");
+    dispatch({
+      type: GET_ALL_PROFILES,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err.response);
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// get profile by ID
+export const getProfileById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile/user/${userId}`);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err.response);
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },

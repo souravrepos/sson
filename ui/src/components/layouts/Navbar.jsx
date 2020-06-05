@@ -1,14 +1,17 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/authAction";
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, loading }, logout, history }) => {
   const loggedIn = (
     <ul>
       <li>
-        <a onClick={logout}>Sign Out</a>
+        <Link to="/allprofiles">People</Link>
+      </li>
+      <li>
+        <a onClick={() => logout()}>Log Out</a>
       </li>
     </ul>
   );
@@ -16,13 +19,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const loggedOut = (
     <ul>
       <li>
-        <Link to="">People</Link>
+        <Link to="/allprofiles">People</Link>
       </li>
       <li>
         <Link to="/signup">Sign Up</Link>
       </li>
       <li>
-        <Link to="/login">Log In</Link>
+        <Link to="/login">Login</Link>
       </li>
     </ul>
   );
@@ -50,4 +53,4 @@ const mapStateToProps = (state) => ({
   auth: state.authReducer,
 });
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout })(withRouter(Navbar));

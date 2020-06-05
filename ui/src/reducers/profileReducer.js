@@ -3,6 +3,7 @@ import {
   PROFILE_ERROR,
   CLEAR_PROFILE,
   UPDATE_PROFILE,
+  GET_ALL_PROFILES,
 } from "../Constants_Ui";
 
 const initialState = {
@@ -24,6 +25,13 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
+    case GET_ALL_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false,
+      };
+
     case PROFILE_ERROR:
       return {
         ...state,
@@ -33,6 +41,7 @@ export default function (state = initialState, action) {
 
     case CLEAR_PROFILE:
       return {
+        ...state,
         profile: null,
         loading: false,
       };

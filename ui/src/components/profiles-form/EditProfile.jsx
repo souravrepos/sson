@@ -42,7 +42,7 @@ const EditProfile = ({
       instagram: loading || !profile.social ? "" : profile.social.instagram,
       youtube: loading || !profile.socials ? "" : profile.social.youtube,
     });
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
 
   const {
     status,
